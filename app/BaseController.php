@@ -91,4 +91,20 @@ abstract class BaseController
         return $v->failException(true)->check($data);
     }
 
+    public function __call($name,$parameters){
+        //当前方法
+//        dump($name);
+        //当前方法参数
+//        dump($parameters);
+        //逻辑：如果我们的模块是api模块输出api的数据格式
+        //      如果我们是模板引擎的模式就需要给出404页面
+
+        $res=[
+            'status'=>0,
+            'message'=>'此方法不存在',
+            'data'=>[]
+        ];
+        return json($res,400);
+    }
+
 }
